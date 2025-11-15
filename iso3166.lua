@@ -2,6 +2,9 @@
 
 local M = {}
 
+M.DATA_VERSION = "ISO-3166 2025-11"
+M.LOOKUP_DATE = "2025-11-15"
+
 local function Country(name, alpha2, alpha3, numeric)
     local private = {
         name = name,
@@ -24,7 +27,7 @@ end
 
 local raw_countries = require("data.countries")
 
--- coutnries table
+-- countries table
 local countries = {}
 
 --indices

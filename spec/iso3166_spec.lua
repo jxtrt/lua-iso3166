@@ -38,5 +38,7 @@ local zero_japan = iso3166.by_numeric("0392")
 assert.are.equal(zero_japan.name, "Japan")
 local int_japan = iso3166.by_numeric(392)
 assert.are.equal(int_japan.name, "Japan")
+local albania = iso3166.by_numeric("8") -- full code being 008
+assert.are.equal(albania.name, "Albania")
 
 print("Tests passed.")
