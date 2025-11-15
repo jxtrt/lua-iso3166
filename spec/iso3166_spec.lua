@@ -22,4 +22,8 @@ assert.are.equal(portugal.name, "Portugal")
 local countries = iso3166.list()
 assert.is_table(countries)
 
+-- test immutability
+local germany = iso3166.by_alpha2("DE")
+assert.has_error(function() germany.name = "foo" end, "Country data is immutable.")
+
 print("Tests passed.")

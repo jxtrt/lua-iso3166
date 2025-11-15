@@ -3,12 +3,23 @@
 local M = {}
 
 local function Country(name, alpha2, alpha3, numeric)
-    return {
+    local private = {
         name = name,
         alpha2 = alpha2,
         alpha3 = alpha3,
         numeric = numeric
     }
+
+    local proxy = {}
+    setmetatable(proxy, {
+        __index = private,
+        __newindex = function()
+            error("Country data is immutable.", 2)
+        end,
+        __metatable = false
+    })
+
+    return proxy
 end
 
 local raw_countries = require("data.countries")
