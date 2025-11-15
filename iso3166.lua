@@ -55,6 +55,7 @@ function M.by_alpha3(code)
 end
 
 function M.by_numeric(code)
+    code = string.format("%03d", tonumber(code)) --leading zeros and int support
     return _by_numeric[code]
 end
 

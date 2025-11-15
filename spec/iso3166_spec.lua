@@ -26,4 +26,17 @@ assert.is_table(countries)
 local germany = iso3166.by_alpha2("DE")
 assert.has_error(function() germany.name = "foo" end, "Country data is immutable.")
 
+--test casing
+local italy = iso3166.by_alpha2("it")
+assert.is_not_nil(italy)
+assert.are.equal(italy.name, "Italy")
+
+--test numeric with leading zeros
+local japan = iso3166.by_numeric("392")
+assert.are.equal(japan.name, "Japan")
+local zero_japan = iso3166.by_numeric("0392")
+assert.are.equal(zero_japan.name, "Japan")
+local int_japan = iso3166.by_numeric(392)
+assert.are.equal(int_japan.name, "Japan")
+
 print("Tests passed.")
