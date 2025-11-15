@@ -45,10 +45,12 @@ end
 
 --public intface
 function M.by_alpha2(code)
+    code = string.upper(code)
     return _by_alpha2[code]
 end
 
 function M.by_alpha3(code)
+    code = string.upper(code)
     return _by_alpha3[code]
 end
 
