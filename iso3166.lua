@@ -1,1 +1,54 @@
--- 
+-- iso3166.lua
+
+local M = {}
+
+local function Country(name, alpha2, alpha3, numeric)
+    return {
+        name = name,
+        alpha2 = alpha2,
+        alpha3 = alpha3,
+        numeric = numeric
+    }
+end
+
+local countries = { --todo: separate file
+    ES = Country("Spain", "ES", "ESP", "724"),
+    FR = Country("France", "FR", "FRA", "250"),
+    PT = Country("Portugal", "PT", "PRT", "620")
+}
+
+--indices
+local _by_alpha2 = {}
+local _by_alpha3 = {}
+local _by_numeric = {}
+
+--building indices
+for _, country in pairs(countries) do
+    _by_alpha2[country.alpha2] = country
+    _by_alpha3[country.alpha3] = country
+    _by_numeric[country.numeric] = country
+end
+
+
+--public intface
+function M.by_alpha2(code)
+    return _by_alpha2[code]
+end
+
+function M.by_alpha3(code)
+    return _by_alpha3[code]
+end
+
+function M.by_numeric(code)
+    return _by_numeric[code]
+end
+
+function M.list()
+    local list = {}
+    for _, country in pairs(countries) do
+        table.insert(list, country)
+    end
+    return list
+end
+
+return M
