@@ -11,19 +11,21 @@ local function Country(name, alpha2, alpha3, numeric)
     }
 end
 
-local countries = { --todo: separate file
-    ES = Country("Spain", "ES", "ESP", "724"),
-    FR = Country("France", "FR", "FRA", "250"),
-    PT = Country("Portugal", "PT", "PRT", "620")
-}
+local raw_countries = require("data.countries")
+
+-- coutnries table
+local countries = {}
 
 --indices
 local _by_alpha2 = {}
 local _by_alpha3 = {}
 local _by_numeric = {}
 
---building indices
-for _, country in pairs(countries) do
+--building base table and indices
+for _, raw_c in pairs(raw_countries) do
+    local country = Country(raw_c.name, raw_c.alpha2, raw_c.alpha3, raw_c.numeric)
+    table.insert(countries, country)
+
     _by_alpha2[country.alpha2] = country
     _by_alpha3[country.alpha3] = country
     _by_numeric[country.numeric] = country
